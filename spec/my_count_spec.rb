@@ -19,5 +19,13 @@ RSpec.describe Enumerable do
         expect(enumerable.my_count { |value| value == 5 }).to eq 1
       end
     end
+
+    context 'when given an argument' do
+      it 'returns the number of occurences of the given element' do
+        expect(enumerable.my_count(1)).to eq 2
+        expect(enumerable.my_count(3)).to eq 1
+        expect(enumerable.my_count(403)).to eq 0
+      end
+    end
   end
 end

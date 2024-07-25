@@ -36,6 +36,29 @@ module Enumerable
       return false
     end
   end
+
+  def my_none?
+    if block_given?
+      self.my_each { |v| return false if yield(v)}
+
+      return true
+    end
+  end
+
+  def my_count(target = nil)
+    counter = 0
+    if block_given?
+      self.my_each { |v| counter += 1 if yield(v) }
+      return counter 
+    end
+    
+    unless target.nil?
+      self.my_each { |v| counter += 1 if v == target }
+      return counter 
+    end
+    
+    self.length
+  end
 end
 
 # You will first have to define my_each
