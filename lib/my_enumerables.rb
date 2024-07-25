@@ -20,6 +20,22 @@ module Enumerable
       return new_obj
     end
   end
+
+  def my_all?
+    if block_given?
+      self.my_each { |v| return false unless yield(v) }
+        
+      return true
+    end
+  end
+
+  def my_any?
+    if block_given?
+      self.my_each { |v| return true if yield(v) }
+    
+      return false
+    end
+  end
 end
 
 # You will first have to define my_each
