@@ -67,6 +67,18 @@ module Enumerable
       return arr
     end
   end
+
+  def my_inject(value = nil, &block)
+    value = self[0] if value.nil?
+
+    if block_given?
+      self.my_each do |v|
+        value = block.call(value, v)
+      end
+
+      return value
+    end
+  end
 end
 
 # You will first have to define my_each
