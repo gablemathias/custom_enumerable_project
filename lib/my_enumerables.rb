@@ -56,8 +56,16 @@ module Enumerable
       self.my_each { |v| counter += 1 if v == target }
       return counter 
     end
-    
+
     self.length
+  end
+
+  def my_map(&block)
+    arr = []
+    if block_given?
+      self.my_each { |v| arr << block.call(v) }  
+      return arr
+    end
   end
 end
 
