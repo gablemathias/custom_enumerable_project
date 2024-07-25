@@ -1,5 +1,25 @@
 module Enumerable
   # Your code goes here
+  def my_each_with_index(&block)
+    if block_given?
+      index = 0
+      self.my_each do |v|
+        block.call(v, index)
+        index += 1
+      end
+    end
+    return self
+  end
+
+  def my_select
+    if block_given?
+      new_obj = []
+      self.my_each do |v|
+        new_obj << v if yield(v)
+      end
+      return new_obj
+    end
+  end
 end
 
 # You will first have to define my_each
